@@ -1,0 +1,20 @@
+footprint: [[-0.1, -0.1], [-0.1, 0.1],[0.3,0.1],[0.3,-0.1]]
+
+footprint_padding: 0.02
+inflation_radius : 0.3
+transform_tolerance : 0.2
+
+
+map_type: costmap #?
+
+inflation_layer:
+  enabled:              true
+  cost_scaling_factor:  10.0
+  inflation_radius:     0.45 #0.45 고정 높아지면 벽 뒤로 넘어감
+  inflation_unknow:     true
+static_layer:
+  enabled:  true
+  map_topic:  "/map"
+
+  
+

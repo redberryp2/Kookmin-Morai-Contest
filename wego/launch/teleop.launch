@@ -1,0 +1,37 @@
+<launch>
+
+    <!-- arguments -->
+    <arg name = "viz" default = "false"/>
+    <arg name = "ekf" default = "true"/>
+
+
+    <!-- about tf -->
+    <node pkg = "tf2_ros" type = "static_transform_publisher" name = "base_list_to_imu"
+     args = " 0.0 0.0 0.12 0.0 0.0 0.0 1.0 base_link imu" />
+    <node pkg = "tf2_ros" type = "static_transform_publisher" name = "base_list_to_lidar"
+     args = " 0.11 0.0 0.13 0.0 0.0 0.0 1.0 base_link lidar" />
+
+    <!-- lidar converting-->
+    <node pkg = "wego" type = "lidar_convert" name = "lidar_convert" />
+
+    <!-- <node pkg = "wego" type = "pub_odom.py" name "pub_odom"/> -->
+    
+    <!-- about odom -->
+    <group if = "$(arg ekf)">
+        <include file = "$(find robot_localization)/launch/dual_ekf_navsat_example.launch"/>
+    </group>
+    <group unless = "$(arg ekf)">
+        <node pkg ="wego" type = "pub_odom.py" name = "pub_odom"/>
+
+    </group>
+    <!-- race car driver -->
+    <include file="$(find racecar)/launch/teleop.launch"/>
+
+
+
+    <!-- rviz-->
+    <!-- <group if = "$(arg viz)"> -->
+        <!-- <node name = "rviz" pkg = "rviz" type = "rviz" args="-d $(find wego)/rviz/display.rviz" />  -->
+    <!-- </group> -->
+
+</launch>

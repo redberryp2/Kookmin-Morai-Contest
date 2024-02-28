@@ -1,0 +1,4 @@
+int32 mission
+bool is_stop_flag
+bool is_dynamic_obs
+float32 mission_time

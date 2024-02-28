@@ -1,0 +1,12 @@
+<launch>
+  <!-- 네비게이션 + 라이다 코드 -->
+  <node pkg="wego" type="navigation_oneway.py" name="navigation_client" />
+  <node pkg="Lidar_pkg" type="Lidar_code" name="processing_2D_LidarData" />
+  
+  <!-- 카메라 코드 -->
+  <node pkg="dh_pkg" type="dh_cam.py" name="image_parser" />
+  <!-- 제어 코드 -->
+  <node pkg="local_pkg" type="gnss" name="Control" />
+  <node pkg="code" type="mission" name="Control_Node" output="screen" />
+  
+</launch>

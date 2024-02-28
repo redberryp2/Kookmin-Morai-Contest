@@ -1,0 +1,8 @@
+<launch>
+  <!-- 슬램 런치 파일 -->
+  <include file="$(find wego)/launch/teleop.launch" />
+  <include file="$(find wego)/launch/navigation.launch" />
+ <!-- 코드 런치 파일 -->
+  <include file="$(find wego)/launch/code.launch" />
+
+</launch>
